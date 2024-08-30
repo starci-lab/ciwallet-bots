@@ -8,7 +8,7 @@ class Bot:
     
     async def handle_start(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
         photo_path = "assets/background.jpg"
-        keyboard = [[InlineKeyboardButton("Open Tap Wallet", web_app=WebAppInfo("https://ciwallet.starci.net"))]]
+        keyboard = [[InlineKeyboardButton("Open Ci Wallet", web_app=WebAppInfo("https://ciwallet.starci.net"))]]
         reply_markup = InlineKeyboardMarkup(keyboard)
 
         await context.bot.send_photo(
