@@ -1,0 +1,9 @@
+services:
+  server:
+    container_name: ci-wallet-bot
+    build:
+      context: ..
+    environment:
+      TELEGRAM_API_TOKEN: ${TELEGRAM_API_TOKEN}
+    ports:
+        - 9992:9992

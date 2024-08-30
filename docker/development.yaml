@@ -1,0 +1,9 @@
+services:
+  server:
+    container_name: tap-wallet-bot
+    build:
+      context: ..
+    env_file:
+      - ../.env.docker
+    ports:
+        - 9992:9992
