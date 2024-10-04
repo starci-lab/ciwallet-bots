@@ -5,6 +5,7 @@ services:
       context: ..
     environment:
       TELEGRAM_API_TOKEN: ${TELEGRAM_API_TOKEN}
+      TELEGRAM_MINIAPP_URL: ${TELEGRAM_MINIAPP_URL}
     ports:
         - 9992:9992
 

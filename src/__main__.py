@@ -1,5 +1,5 @@
 #imports
-import constants
+import constants as constants
 from telegram_bot.bot import Bot
 
 def main():

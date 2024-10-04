@@ -9,4 +9,4 @@ RUN pip install python-dotenv
 COPY . .
 
 EXPOSE 9992
-CMD python3 __main__.py
+CMD python3 \src\__main__.py
