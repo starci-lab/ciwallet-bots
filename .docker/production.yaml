@@ -6,6 +6,8 @@ services:
     environment:
       TELEGRAM_API_TOKEN: ${TELEGRAM_API_TOKEN}
       TELEGRAM_MINIAPP_URL: ${TELEGRAM_MINIAPP_URL}
+      KAFKA_1_HOST: ${KAFKA_1_HOST}
+      KAFKA_1_PORT: ${KAFKA_1_PORT}
     ports:
         - 9992:9992
 

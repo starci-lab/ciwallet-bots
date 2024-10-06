@@ -20,7 +20,8 @@ jobs:
       env:
         TELEGRAM_API_TOKEN: ${{ secrets.TELEGRAM_API_TOKEN }}
         TELEGRAM_MINIAPP_URL: ${{ secrets.TELEGRAM_MINIAPP_URL }}
-      
+        KAFKA_1_HOST: ${{ secrets.KAFKA_1_HOST }}
+        KAFKA_1_PORT: ${{ secrets.KAFKA_1_PORT }}
       run: docker compose -f .docker/production.yaml -p ci-wallet-bot up --build -d --force-recreate
 
 #docker compose -f .docker/development.yaml -p ci-wallet-bot up --build -d --force-recreate
