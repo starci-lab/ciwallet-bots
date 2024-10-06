@@ -1,16 +1,11 @@
 import logging
+from os import error
 import sys
 from typing import Callable
 from confluent_kafka import KafkaError, Producer, Consumer, KafkaException
 import uuid
 
 import constants
-
-def acked(err, msg):
-    if err is not None:
-        print("Failed to deliver message: %s: %s" % (str(msg), str(err)))
-    else:
-        print("Message produced: %s" % (str(msg)))
 
 class KafkaClient:
     def __init__(self):
@@ -48,12 +43,18 @@ class KafkaClient:
         self.consumers[key] = Consumer(conf)
         return self.consumers[key]
 
+    def acked(self, err: error, msg: str):
+        if err is not None:
+            self.logger.error("Failed to deliver message: %s: %s" % (str(msg), str(err)))
+        else:
+            self.logger.info("Message produced: %s" % (str(msg)))
+
     def produce(self, topic: str, message: str, key: str = constants.DEFAULT_KEY):
         producer = self.producers[key]
         if not producer:
             raise Exception("Producer not created")
         try:
-            producer.produce(topic, key=uuid.uuid4().__str__(), value=message, callback=acked)
+            producer.produce(topic, key=uuid.uuid4().__str__(), value=message, callback=self.acked)
         except KafkaException as e:
             self.logger.error(f"Failed to produce message: {e}")
 
