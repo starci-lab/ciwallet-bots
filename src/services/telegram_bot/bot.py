@@ -33,8 +33,8 @@ class Bot:
             if context.args:
                 if (context.args.__len__() > 0): 
                     data = {
-                        "user_id": context._user_id,
-                        "origin_user_id": context.args[0]
+                        "telegram_user_id": context._user_id,
+                        "cifarm_user_id": context.args[0]
                     }
                     self.kafka_client.produce(
                         id=self.producer_id, 
