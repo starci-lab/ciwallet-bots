@@ -13,7 +13,7 @@ class Bot:
         self.application = ApplicationBuilder().token(token).build()
         self.kafka_client = KafkaClient()
         self.producer_key = uuid.uuid4().__str__()
-        self.kafka_client.createProducer(self.producer_key)
+        self.kafka_client.create_producer(self.producer_key)
 
         logging.basicConfig(
             level=logging.INFO,

@@ -27,7 +27,7 @@ class KafkaClient:
         )
         self.logger = logging.getLogger(__name__)
 
-    def createProducer(self, key: str):
+    def create_producer(self, key: str):
         conf = {
             "bootstrap.servers": f"{self.host}:{self.port}",
             "client.id": "ciwallet-bot"
@@ -35,7 +35,7 @@ class KafkaClient:
         self.producers[key] = Producer(conf)
         return self.producers[key]
     
-    def createConsumer(self, key: str, group_id: str):
+    def create_consumer(self, key: str, group_id: str):
         conf = {
             "bootstrap.servers": f"{self.host}:{self.port}",
             "client.id": "ciwallet-bot",
