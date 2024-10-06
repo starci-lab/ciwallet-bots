@@ -1,10 +1,12 @@
 #imports
 import constants as constants
-from telegram_bot.bot import Bot
+from services.telegram_bot.bot import Bot
+
+def callback(ch, method, properties, body):
+    print(f"Received {body}")
 
 def main():
-    print(constants.telegram_api_token)
-    bot = Bot(constants.telegram_api_token)
+    bot = Bot(constants.TELEGRAM_API_TOKEN)
     bot.run()
 
 if __name__ == "__main__":

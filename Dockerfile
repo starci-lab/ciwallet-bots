@@ -5,6 +5,7 @@ WORKDIR /app
 
 RUN pip install python-telegram-bot
 RUN pip install python-dotenv
+RUN pip install confluent_kafka
 
 COPY . .
 
