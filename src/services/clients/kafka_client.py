@@ -22,17 +22,17 @@ class KafkaClient:
         )
         self.logger = logging.getLogger(__name__)
 
-    def create_producer(self, key: str = constants.DEFAULT_KEY):
+    def create_producer(self, id: str = constants.DEFAULT_ID):
         conf = {
             "bootstrap.servers": f"{self.host}:{self.port}",
             "client.id": "ciwallet-bot"
         }
-        self.producers[key] = Producer(conf)
-        return self.producers[key]
+        self.producers[id] = Producer(conf)
+        return self.producers[id]
     
     def create_consumer(
             self, 
-            key: str = constants.DEFAULT_KEY, 
+            id: str = constants.DEFAULT_ID, 
             group_id: str = constants.DEFAULT_GROUP_ID):
         conf = {
             "bootstrap.servers": f"{self.host}:{self.port}",
@@ -40,8 +40,8 @@ class KafkaClient:
             "group.id": group_id,
             "auto.offset.reset": "earliest"
         }
-        self.consumers[key] = Consumer(conf)
-        return self.consumers[key]
+        self.consumers[id] = Consumer(conf)
+        return self.consumers[id]
 
     def acked(self, err: error, msg: str):
         if err is not None:
@@ -49,17 +49,17 @@ class KafkaClient:
         else:
             self.logger.info("Message produced: %s" % (str(msg)))
 
-    def produce(self, topic: str, message: str, key: str = constants.DEFAULT_KEY):
-        producer = self.producers[key]
+    def produce(self, topic: str, message: str, id: str = constants.DEFAULT_ID):
+        producer = self.producers[id]
         if not producer:
             raise Exception("Producer not created")
         try:
-            producer.produce(topic, key=uuid.uuid4().__str__(), value=message, callback=self.acked)
+            producer.produce(topic=topic, value=message, callback=self.acked)
         except KafkaException as e:
             self.logger.error(f"Failed to produce message: {e}")
 
-    def basic_consume_loop(self, topic: str, callback: Callable[[str], None], key: str = constants.DEFAULT_KEY):
-        consumer = self.consumers[key]
+    def basic_consume_loop(self, topic: str, callback: Callable[[str], None], id: str = constants.DEFAULT_ID):
+        consumer = self.consumers[id]
         if not consumer:
             raise Exception("Producer not created")
         try:
