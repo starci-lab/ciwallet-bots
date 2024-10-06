@@ -27,7 +27,7 @@ class KafkaClient:
         )
         self.logger = logging.getLogger(__name__)
 
-    def create_producer(self, key: str):
+    def create_producer(self, key: str = constants.DEFAULT_KEY):
         conf = {
             "bootstrap.servers": f"{self.host}:{self.port}",
             "client.id": "ciwallet-bot"
@@ -35,7 +35,10 @@ class KafkaClient:
         self.producers[key] = Producer(conf)
         return self.producers[key]
     
-    def create_consumer(self, key: str, group_id: str):
+    def create_consumer(
+            self, 
+            key: str = constants.DEFAULT_KEY, 
+            group_id: str = constants.DEFAULT_GROUP_ID):
         conf = {
             "bootstrap.servers": f"{self.host}:{self.port}",
             "client.id": "ciwallet-bot",
@@ -45,7 +48,7 @@ class KafkaClient:
         self.consumers[key] = Consumer(conf)
         return self.consumers[key]
 
-    def produce(self, key: str, topic: str, message: str):
+    def produce(self, topic: str, message: str, key: str = constants.DEFAULT_KEY):
         producer = self.producers[key]
         if not producer:
             raise Exception("Producer not created")
@@ -54,7 +57,7 @@ class KafkaClient:
         except KafkaException as e:
             self.logger.error(f"Failed to produce message: {e}")
 
-    def basic_consume_loop(self, key: str, topic: str, callback: Callable[[str], None]):
+    def basic_consume_loop(self, topic: str, callback: Callable[[str], None], key: str = constants.DEFAULT_KEY):
         consumer = self.consumers[key]
         if not consumer:
             raise Exception("Producer not created")

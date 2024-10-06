@@ -13,3 +13,7 @@ KAFKA_1_PORT = int(os.environ.get("KAFKA_1_PORT", "29092"))
 
 # Brokers
 INVITE_GROUP_TOPIC = "invite"
+
+# Default values
+DEFAULT_KEY = "defaultKey"
+DEFAULT_GROUP_ID = "defaultGroupId"
