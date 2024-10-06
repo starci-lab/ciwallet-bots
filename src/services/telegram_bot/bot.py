@@ -24,32 +24,31 @@ class Bot:
         self.logger.info(f"Token: {token}")
     
     async def handle_start(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
-            photo_path = "assets/background.jpg"
-            keyboard = [[InlineKeyboardButton("Open Ci Wallet", web_app=WebAppInfo(constants.TELEGRAM_MINIAPP_URL))]]
-            reply_markup = InlineKeyboardMarkup(keyboard)
+        photo_path = "assets/background.jpg"
+        keyboard = [[InlineKeyboardButton("Open Ci Wallet", web_app=WebAppInfo(constants.TELEGRAM_MINIAPP_URL))]]
+        reply_markup = InlineKeyboardMarkup(keyboard)
 
-            if not context._user_id: raise Exception("User id not found")
-            
-            if context.args:
-                if (context.args.__len__() > 0): 
-                    data = {
-                        "telegram_user_id": context._user_id,
-                        "cifarm_user_id": context.args[0]
-                    }
-                    self.kafka_client.produce(
-                        id=self.producer_id, 
-                        topic=constants.INVITE_TOPIC,
-                        message=data.__str__()
-                    )
+        # if not context._user_id: raise Exception("User id not found")
+        # if context.args:
+        #     if (context.args.__len__() > 0): 
+        #         data = {
+        #             "telegram_user_id": context._user_id,
+        #             "cifarm_user_id": context.args[0]
+        #         }
+        #         self.kafka_client.produce(
+        #             id=self.producer_id, 
+        #             topic=constants.INVITE_TOPIC,
+        #             message=data.__str__()
+        #         )
 
-            chat = update.effective_chat
-            if chat: 
-                await context.bot.send_photo(
-                    chat_id=chat.id,
-                    photo=open(photo_path, "rb"),
-                    caption="""🎉 Introducing Ci Wallet — a Telegram-based cross-chain wallet that transforms cryptocurrency management by enabling you to send, receive, and swap assets across multiple blockchains directly within your Telegram app. With Ci Wallet, you can effortlessly handle a diverse range of cryptocurrencies in a familiar chat environment, making cross-chain transactions simpler and more secure than ever before.""",
-                    reply_markup=reply_markup
-                )  
+        chat = update.effective_chat
+        if chat: 
+            await context.bot.send_photo(
+                chat_id=chat.id,
+                photo=open(photo_path, "rb"),
+                caption="""🎉 Introducing Ci Wallet — a Telegram-based cross-chain wallet that transforms cryptocurrency management by enabling you to send, receive, and swap assets across multiple blockchains directly within your Telegram app. With Ci Wallet, you can effortlessly handle a diverse range of cryptocurrencies in a familiar chat environment, making cross-chain transactions simpler and more secure than ever before.""",
+                reply_markup=reply_markup
+            )  
         
     def run(self):
         start_handler = CommandHandler("start", self.handle_start)  
