@@ -1,14 +1,37 @@
 services:
+  postgres:
+    command: postgres -c shared_preload_libraries=pg_stat_statements -c pg_stat_statements.track=all
+    environment:
+      POSTGRES_POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    expose:
+      - "5433"
+    image: postgres:12.2-alpine
+    ports:
+      - "5433:5432"
+    volumes:
+      - data:/var/lib/postgresql/data
   server:
-    container_name: ci-wallet-bot
+    container_name: ciwallet-bots
     build:
       context: ..
+    depends_on:
+      - postgres
     environment:
-      TELEGRAM_API_TOKEN: ${TELEGRAM_API_TOKEN}
-      TELEGRAM_MINIAPP_URL: ${TELEGRAM_MINIAPP_URL}
-      KAFKA_1_HOST: ${KAFKA_1_HOST}
-      KAFKA_1_PORT: ${KAFKA_1_PORT}
+      TELEGRAM_CIWALLET_API_TOKEN: ${TELEGRAM_CIWALLET_API_TOKEN}
+      TELEGRAM_CIFARM_API_TOKEN: ${TELEGRAM_CIFARM_API_TOKEN}
+      TELEGRAM_CIWALLET_MINIAPP_URL: ${TELEGRAM_CIWALLET_MINIAPP_URL}
+      TELEGRAM_CIFARM_MINIAPP_URL: ${TELEGRAM_CIFARM_MINIAPP_URL}
+
+      # Postgres
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_HOST: ${POSTGRES_HOST}
+      POSTGRES_PORT: ${POSTGRES_PORT}
     ports:
         - 9992:9992
+volumes:
+  data: 
 
   

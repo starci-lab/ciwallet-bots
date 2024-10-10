@@ -18,10 +18,17 @@ jobs:
 
     - name: Run Docker compose command
       env:
-        TELEGRAM_API_TOKEN: ${{ secrets.TELEGRAM_API_TOKEN }}
-        TELEGRAM_MINIAPP_URL: ${{ secrets.TELEGRAM_MINIAPP_URL }}
-        KAFKA_1_HOST: ${{ secrets.KAFKA_1_HOST }}
-        KAFKA_1_PORT: ${{ secrets.KAFKA_1_PORT }}
+        TELEGRAM_CIWALLET_API_TOKEN: ${{ secrets.TELEGRAM_CIWALLET_API_TOKEN }}
+        TELEGRAM_CIFARM_API_TOKEN: ${{ secrets.TELEGRAM_CIFARM_API_TOKEN }}
+        TELEGRAM_CIWALLET_MINIAPP_URL: ${{ vars.TELEGRAM_CIWALLET_MINIAPP_URL }}
+        TELEGRAM_CIFARM_MINIAPP_URL: ${{ vars.TELEGRAM_CIFARM_MINIAPP_URL }}
+
+        POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
+        POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+        POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
+        POSTGRES_HOST: ${{ secrets.POSTGRES_HOST }}
+        POSTGRES_PORT: ${{ secrets.POSTGRES_PORT }}
+        
       run: docker compose -f .docker/production.yaml -p ci-wallet-bot up --build -d --force-recreate
 
 #docker compose -f .docker/development.yaml -p ci-wallet-bot up --build -d --force-recreate

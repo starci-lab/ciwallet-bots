@@ -5,9 +5,9 @@ WORKDIR /app
 
 RUN pip install python-telegram-bot
 RUN pip install python-dotenv
-RUN pip install confluent_kafka
+RUN pip install sqlalchemy
 
 COPY . .
 
 EXPOSE 9992
-CMD python3 src/__main__.py
+RUN python3 src/ciwallet/__main__.py
