@@ -8,6 +8,5 @@ RUN pip install python-dotenv
 RUN pip install sqlalchemy
 
 COPY . .
-
 EXPOSE 9992
 RUN python3 src/ciwallet/__main__.py

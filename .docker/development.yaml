@@ -11,15 +11,15 @@ services:
       - "5433:5432"
     volumes:
       - data:/var/lib/postgresql/data
-  server:
+  bots:
     container_name: ciwallet-bots
     build:
       context: ..
-    depends_on:
-      - postgres
     env_file:
       - ../.env.docker
+    depends_on:
+      - postgres
     ports:
-        - 9992:9992
+      - 9992:9992
 volumes:
   data: 
