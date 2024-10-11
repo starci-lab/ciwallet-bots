@@ -2,7 +2,7 @@ from sqlalchemy import create_engine
 from sqlalchemy_utils import database_exists, create_database
 from services.database.models.base import Base
 from config import env
-
+ 
 class PostgresEngine:
     def __init__(self):
         self.host = env.POSTGRES_HOST
