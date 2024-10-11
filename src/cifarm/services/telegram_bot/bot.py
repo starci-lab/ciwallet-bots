@@ -2,7 +2,7 @@
 import logging
 import sys
 from services.database.repositories.users import UsersRepository
-import env
+from config import env
 from telegram import InlineKeyboardButton, Update, InlineKeyboardMarkup, WebAppInfo
 from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes, ContextTypes, MessageHandler, filters
 

@@ -2,21 +2,29 @@ services:
   postgres:
     command: postgres -c shared_preload_libraries=pg_stat_statements -c pg_stat_statements.track=all
     environment:
-      POSTGRES_POSTGRES_DB: cifarm
+      POSTGRES_USER: postgres
       POSTGRES_PASSWORD: Cuong123_A
     expose:
       - "5433"
-    image: postgres:12.2-alpine
+    image: postgres:17.0-alpine3.20
     ports:
       - "5433:5432"
     volumes:
       - data:/var/lib/postgresql/data
-  bots:
+  ciwallet-bots:
     container_name: ciwallet-bots
     build:
       context: ..
-    env_file:
-      - ../.env.docker
+      args:
+        TELEGRAM_CIWALLET_API_TOKEN: 7521644974:AAHjXaWQQ47hBsishBMD4xNu8ac2b7OXSwk
+        TELEGRAM_CIFARM_API_TOKEN: 7746263811:AAF086vqVJig1oWqUV6p0Z2OcgPBodSGpF4
+        TELEGRAM_CIWALLET_MINIAPP_URL: https://3000.starci.net
+        TELEGRAM_CIFARM_MINIAPP_URL: https://3000.starci.net?current=cifarm
+        POSTGRES_USER: postgres
+        POSTGRES_PASSWORD: Cuong123_A
+        POSTGRES_DB: cifarm
+        POSTGRES_HOST: host.docker.internal
+        POSTGRES_PORT: 5433
     depends_on:
       - postgres
     ports:
