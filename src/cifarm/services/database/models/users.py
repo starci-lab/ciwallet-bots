@@ -1,6 +1,6 @@
 import uuid
 from services.database.models.base import Base
-from sqlalchemy.dialects.postgresql import UUID, INTEGER, VARCHAR
+from sqlalchemy.dialects.postgresql import UUID, VARCHAR
 from sqlalchemy.orm import Mapped, mapped_column
 
 class User(Base):
