@@ -17,8 +17,10 @@ services:
       context: ..
     depends_on:
       - postgres
-    environment:
+    env_file:
       - ../.env.docker
+    environment:
+      HENTAI: 1
     ports:
         - 9992:9992
 volumes:

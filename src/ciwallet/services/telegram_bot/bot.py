@@ -2,13 +2,12 @@
 import logging
 import sys
 
-from .... import env
+from config import env
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, WebAppInfo
 from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes
 
 class Bot:
     def __init__(self):
-        print("Bot init", env.TELEGRAM_CIWALLET_API_TOKEN)
         self.application = ApplicationBuilder().token(env.TELEGRAM_CIWALLET_API_TOKEN).build()
 
         logging.basicConfig(
