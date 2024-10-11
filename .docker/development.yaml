@@ -19,8 +19,6 @@ services:
       - postgres
     env_file:
       - ../.env.docker
-    environment:
-      HENTAI: 1
     ports:
         - 9992:9992
 volumes:
