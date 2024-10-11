@@ -9,8 +9,6 @@ RUN pip install psycopg2-binary
 RUN pip install sqlalchemy
 RUN pip install --upgrade sqlalchemy-utils
 
-COPY init.sql /docker-entrypoint-initdb.d/
-
 ARG TELEGRAM_CIWALLET_API_TOKEN
 ARG TELEGRAM_CIFARM_API_TOKEN
 ARG TELEGRAM_CIWALLET_MINIAPP_URL
@@ -37,4 +35,4 @@ ENV TELEGRAM_CIFARM_MINIAPP_URL      $TELEGRAM_CIFARM_MINIAPP_URL
 RUN 
 COPY . .
 EXPOSE 9992
-CMD python3 src/cifarm/__main__.py
+CMD python3 src/ciwallet/__main__.py & python3 src/cifarm/__main__.py
