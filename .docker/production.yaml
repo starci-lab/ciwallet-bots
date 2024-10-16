@@ -6,11 +6,17 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     expose:
       - "5433"
-    image: postgres:12.2-alpine
+    image: postgres:17.0-alpine3.20
     ports:
       - "5433:5432"
     volumes:
       - data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
   ciwallet-bots:
     container_name: ciwallet-bots  
     build:
@@ -27,11 +33,11 @@ services:
         POSTGRES_PORT: ${POSTGRES_PORT}
     
     depends_on:
-      - postgres
+      postgres:
+        condition: service_healthy
 
     ports:
       - 9992:9992
+
 volumes:
   data: 
-
-  
