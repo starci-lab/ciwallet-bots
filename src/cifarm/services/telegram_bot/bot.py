@@ -41,7 +41,7 @@ Step into the first multichain farming game on Telegram, powered by Ciwallet and
 👩‍🌾 Total farmers: {count}""".format(count=count),
                 reply_markup=reply_markup
             )
-
+ 
     def run(self):
         start_handler = CommandHandler("start", self.handle_start) 
         self.application.add_handler(start_handler)

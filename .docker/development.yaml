@@ -19,7 +19,7 @@ services:
         TELEGRAM_CIWALLET_API_TOKEN: 7521644974:AAHjXaWQQ47hBsishBMD4xNu8ac2b7OXSwk
         TELEGRAM_CIFARM_API_TOKEN: 7746263811:AAF086vqVJig1oWqUV6p0Z2OcgPBodSGpF4
         TELEGRAM_CIWALLET_MINIAPP_URL: https://3001.starci.net
-        TELEGRAM_CIFARM_MINIAPP_URL: https://3001.starci.net?current=cifarm
+        TELEGRAM_CIFARM_MINIAPP_URL: https://3001.starci.net?botType=cifarm
         POSTGRES_USER: postgres
         POSTGRES_PASSWORD: Cuong123_A
         POSTGRES_DB: cifarm
