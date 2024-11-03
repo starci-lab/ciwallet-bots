@@ -21,14 +21,4 @@ CiWallet Bots control the activities of the CiWallet ecosystem. The main bot, @c
 
 ## Features
 
-- **Access Management**: Allow users to get access to the Telegram Miniapps easily.
-
-## Architecture
-
-## Installation
-
-To get started with CiWallet Bots, follow these steps:
-
-1. **Clone the Repository**:
-   ```bash
-   git clone https://github.com/yourusername/ciwallet-bots.git
+- **Access Management**: Allow users to get access to the Telegram Mini Apps.
