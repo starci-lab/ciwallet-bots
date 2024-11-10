@@ -27,7 +27,7 @@ class Bot:
         if chat: 
             await context.bot.send_photo(
                 chat_id=chat.id,
-                photo=open(photo_path, "rb"),
+                photo=photo_path,
                 caption="""🎉 Introducing Ci Wallet — a Telegram-based cross-chain wallet that transforms cryptocurrency management by enabling you to send, receive, and swap assets across multiple blockchains directly within your Telegram app. With Ci Wallet, you can effortlessly handle a diverse range of cryptocurrencies in a familiar chat environment, making cross-chain transactions simpler and more secure than ever before.""",
                 reply_markup=reply_markup
             )  
