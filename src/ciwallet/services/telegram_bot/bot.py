@@ -19,7 +19,7 @@ class Bot:
         self.logger.info(f"Ciwallet Token: {env.TELEGRAM_CIWALLET_API_TOKEN}")
     
     async def handle_start(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
-        photo_path = "assets/background.jpg"
+        photo_path = "https://violet-lazy-yak-333.mypinata.cloud/ipfs/QmRHnaFV6HPkggqEA7hHHJT8c3Sd1yG6NNcbFxdnjWVgkD"
         keyboard = [[InlineKeyboardButton("Open Ciwallet", web_app=WebAppInfo(env.TELEGRAM_CIWALLET_MINIAPP_URL))]]
         reply_markup = InlineKeyboardMarkup(keyboard)
 
