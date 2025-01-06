@@ -1,10 +1,12 @@
 # CiWallet Bots
+## Overview
+This project involves the development and integration of two Telegram bots: **@ciwallet_bot** and **@cifarm_bot**. Together, these bots form the backbone of the CiWallet ecosystem, providing seamless access and enhanced functionality for users.
 
-Welcome to the CiWallet Bots repository! This project encompasses the development of two interconnected Telegram bots: **@ciwallet_bot** and **@cifarm_bot**.
+## Key Features
+- The CiWallet Bots serve distinct yet interconnected purposes:
 
-## Introduction
+- **@ciwallet_bot:** The primary bot responsible for managing the CiWallet Telegram Miniapp, ensuring secure access and smooth operations.
+- **@cifarm_bot:** A companion bot designed to facilitate user interactions with the CiFarm game, making it easier to engage with the gaming ecosystem.
 
-CiWallet Bots control the activities of the CiWallet ecosystem. The main bot, @ciwallet_bot, handles the CiWallet Telegram Miniapp, while @cifarm_bot serves as a sub-bot that allows users to access the CiFarm game more easily.
-
-## Features
-- **Access Management**: Allow users to get access to the Telegram Mini Apps.
+## Language
+- Python
